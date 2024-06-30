@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, computed, input, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { type User } from './user.model';
+
+// type User = {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
 
 @Component({
   selector: 'app-user',
@@ -8,9 +15,9 @@ import { Component, EventEmitter, Input, Output, computed, input, output } from 
 })
 export class UserComponent {  
 
-  @Input({required: true}) user: any;
-  // @Output() select = new EventEmitter<any>();
-  select = output();
+  @Input({required: true}) user!: User;
+  @Input({required: true}) selected!: boolean;
+  @Output() select = new EventEmitter<string>();
 
   get imagePath() {
     return 'assets/users/' + this.user.avatar;
